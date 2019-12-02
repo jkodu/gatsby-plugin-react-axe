@@ -1,7 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export const onClientEntry = async (_, pluginOptions = {}) => {
+
+exports.onClientEntry = async (_, pluginOptions = {}) => {
+  console.log("We've started!")
+  wireUpReactAxe(pluginOptions)
+}
+
+exports.onInitialClientRender = () => {
+  console.log("ReactDOM.render has executed")
+}
+
+async function wireUpReactAxe(pluginOptions) {
   const { showInProduction, axeOptions } = {
     showInProduction: false,
     axeOptions: {},
