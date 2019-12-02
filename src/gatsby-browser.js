@@ -1,14 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
-exports.onClientEntry = async (_, pluginOptions = {}) => {
-  console.log("We've started!")
-  wireUpReactAxe(pluginOptions)
-}
-
 exports.onInitialClientRender = () => {
-  console.log("ReactDOM.render has executed")
+  console.log("Executed: onInitialClientRender")
+  wireUpReactAxe(pluginOptions)
 }
 
 async function wireUpReactAxe(pluginOptions) {
@@ -20,6 +15,7 @@ async function wireUpReactAxe(pluginOptions) {
 
   if (process.env.NODE_ENV === 'development' || showInProduction) {
     const { default: axe } = await import('react-axe')
+    console.log("Run Axe")
     axe(React, ReactDOM, 1000, axeOptions)
   }
 }
